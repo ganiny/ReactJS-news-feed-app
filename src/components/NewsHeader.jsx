@@ -70,6 +70,8 @@ export default function NewsHeader({ onSearchChange, category, onCategoryChange 
           <StyledMenuItem value="science">Science</StyledMenuItem>
           <StyledMenuItem value="sports">Sports</StyledMenuItem>
           <StyledMenuItem value="technology">Technology</StyledMenuItem>
+          <StyledMenuItem value="world">World</StyledMenuItem>
+          <StyledMenuItem value="nation">Nation</StyledMenuItem>
         </StyledSelect>
         <Search>
           <SearchIconWrapper>

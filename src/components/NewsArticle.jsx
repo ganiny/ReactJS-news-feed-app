@@ -16,7 +16,7 @@ const Link = styled("a")(({ theme }) => ({
 export default function NewsArticle({
   title,
   description,
-  author,
+  source,
   publishedAt,
   image,
   url,
@@ -29,7 +29,7 @@ export default function NewsArticle({
             <CardMedia
               component="img"
               height="200"
-              image="https://placeholder.co/150"
+              image={image}
               alt="Sample article"
             />
           )}
@@ -45,7 +45,7 @@ export default function NewsArticle({
       </Link>
       <Box p={2}>
         <Typography variant="caption" color="textSecondary" display="block">
-          {author}
+          {source?.name}
         </Typography>
         {publishedAt && (
           <Typography variant="caption" color="textSecondary">

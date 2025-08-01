@@ -20,9 +20,9 @@ function App() {
   const queryValue = useRef("");
   async function loadData(currentCategory) {
     const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?category=${currentCategory}&q=${
+      `https://gnews.io/api/v4/top-headlines?category=${currentCategory}&q=${
         queryValue.current
-      }&page=${pageNumber.current}&pageSize=5&country=us&apiKey=${
+      }&page=${pageNumber.current}&max=5&country=eg&apikey=${
         import.meta.env.VITE_NEWS_API_KEY
       }`
     );
@@ -31,10 +31,10 @@ function App() {
       throw new Error(data.message);
     }
     return data.articles.map((article) => {
-      const { urlToImage, title, description, author, publishedAt, url } = article;
+      const { image } = article;
       return {
         ...article,
-        image: urlToImage,
+        image,
       };
     });
   }
