@@ -23,7 +23,7 @@ function App() {
       `https://gnews.io/api/v4/top-headlines?category=${currentCategory}&q=${
         queryValue.current
       }&page=${pageNumber.current}&max=5&country=us&apikey=${
-        process.env.VITE_NEWS_API_KEY
+        import.meta.env.VITE_NEWS_API_KEY
       }`
     );
     const data = await response.json();
