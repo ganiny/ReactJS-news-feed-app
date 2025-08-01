@@ -19,7 +19,7 @@ export default function NewsFeed({ articles, loading }) {
   return (
     <div>
       {loading && [...Array(5)].map((_, index) => <LoadingArticle key={index} />)}
-      {articles.map((article) => (
+      {articles?.map((article) => (
         <NewsArticle key={JSON.stringify(article)} {...article} />
       ))}
     </div>
