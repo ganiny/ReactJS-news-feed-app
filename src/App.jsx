@@ -27,10 +27,12 @@ function App() {
       }`
     );
     const data = await response.json();
-    if (data.status !== "ok") {
+    console.log("🚀 ~ loadData ~ data:", data)
+    
+    if (response.status !== 200) {
       throw new Error(data.message);
     }
-    return data.articles.map((article) => {
+    return data?.articles?.map((article) => {
       const { image } = article;
       return {
         ...article,
@@ -44,6 +46,7 @@ function App() {
     setError("");
     loadData(currentCategory ?? category)
       .then((newData) => {
+        console.log("🚀 ~ fetchAndUpdateArticles ~ newData:", newData)
         setArticles(newData);
         setLoading(false);
       })
@@ -59,7 +62,7 @@ function App() {
 
   useEffect(() => {
     fetchAndUpdateArticles();
-  }, [articles]);
+  }, []);
 
   const handleSearchChange = (newQuery) => {
     queryValue.current = newQuery;
