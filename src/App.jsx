@@ -22,7 +22,7 @@ function App() {
     const response = await fetch(
       `https://gnews.io/api/v4/top-headlines?category=${currentCategory}&q=${
         queryValue.current
-      }&page=${pageNumber.current}&max=5&country=eg&apikey=${
+      }&page=${pageNumber.current}&max=5&country=us&apikey=${
         import.meta.env.VITE_NEWS_API_KEY
       }`
     );
