@@ -19,27 +19,23 @@ function App() {
   const pageNumber = useRef(1);
   const queryValue = useRef("");
   async function loadData(currentCategory) {
-    const response = await fetch(
-      `https://gnews.io/api/v4/top-headlines?category=${currentCategory}&q=${
-        queryValue.current
-      }&page=${pageNumber.current}&max=5&country=us&apikey=${
-        import.meta.env.VITE_NEWS_API_KEY
-      }`
-    );
-    const data = await response.json();
-    console.log("🚀 ~ loadData ~ data:", data)
-    
-    if (response.status !== 200) {
-      throw new Error(data.message);
-    }
-    return data?.articles?.map((article) => {
-      const { image } = article;
-      return {
-        ...article,
-        image,
-      };
-    });
+  const response = await fetch(
+    `/api/news?category=${currentCategory}&q=${queryValue.current}&page=${pageNumber.current}&max=5`
+  );
+
+  const data = await response.json();
+  console.log("🚀 ~ loadData ~ data:", data);
+
+  if (!response.ok) {
+    throw new Error(data.error || "Failed to fetch");
   }
+
+  return data?.articles?.map((article) => {
+    const { image } = article;
+    return { ...article, image };
+  });
+}
+
 
   const fetchAndUpdateArticles = (currentCategory) => {
     setLoading(true);
